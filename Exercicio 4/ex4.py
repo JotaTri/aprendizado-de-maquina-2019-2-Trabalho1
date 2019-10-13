@@ -1,6 +1,7 @@
 from math import log, pi
 import csv
-# import numpy as np
+
+import matplotlib.pyplot as plt
 
 PCm1 = 0.3
 PCp1 = 0.7
@@ -15,14 +16,16 @@ with open('dados1.csv') as csvfile:
         pXCp1 = -log(8*pi) - ((float(row[0])+1)**2 + (float(row[1])+3)**2)/8
         pXCm1 = -log(2*pi) - ((float(row[0])-1.2)**2 + (float(row[1])-1.2)**2)/2
         result = pXCm1 - pXCp1 + log(PCm1) - log(PCp1)
-        print('{} - {} + {} - {} = {}......{}'.format(pXCm1, pXCp1, log(PCm1), log(PCp1), result, row[2]))
+        # print('{} - {} + {} - {} = {}......{}'.format(pXCm1, pXCp1, log(PCm1), log(PCp1), result, row[2]))
         # print(result)
         if result > 0 and row[2] == '-1':
             success += 1
-            print(success)
         elif result < 0 and row[2] == '1':
             success += 1
         total += 1
+        print(total)
+        plt.plot(float(row[0]), row[1])
+plt.show()
 
 print(float(success))
 print(float(total))
